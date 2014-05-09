@@ -1,0 +1,22 @@
+{
+  "uuid": "14cc5294-e101-40a3-ba6a-df257fcbbc50",
+  "shortName": "Halo",
+  "longName": "Halo",
+  "companyName": "Michael Clayton",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon_halo.png"
+      }
+    ]
+  }
+}
