@@ -3,6 +3,7 @@
 Window *window;
 TextLayer *text_hour_layer;
 Layer *minute_circle_layer;
+GFont dosis_font;
 
 #define BACKGROUND GColorBlack
 #define FOREGROUND GColorWhite
@@ -71,6 +72,7 @@ void handle_second_tick(struct tm *tick_time, TimeUnits units_changed) {
 
 void handle_deinit(void) {
 	tick_timer_service_unsubscribe();
+	fonts_unload_custom_font(dosis_font); 
 }
 
 
@@ -83,7 +85,8 @@ void handle_init(void) {
 	
 	
 	GRect window_bounds = layer_get_bounds(window_layer);
-	
+
+	dosis_font = fonts_load_custom_font( resource_get_handle(RESOURCE_ID_FONT_DOSIS_56) );
 	
 	GRect full_window_frame = ((GRect) { .origin = { 0, 0 }, .size = { window_bounds.size.w, window_bounds.size.h } });
 	minute_circle_layer = layer_create(full_window_frame);
@@ -92,11 +95,11 @@ void handle_init(void) {
 	
 	
 	// Create a text layer in the center of the screen for the hour
-	text_hour_layer = text_layer_create((GRect) { .origin = { 0, 55 }, .size = { window_bounds.size.w, window_bounds.size.h/2 } });
+	text_hour_layer = text_layer_create((GRect) { .origin = { 0, 50 }, .size = { window_bounds.size.w, window_bounds.size.h/2 } });
 	
-	text_layer_set_text_color(text_hour_layer, FOREGROUND);
 	text_layer_set_background_color(text_hour_layer, GColorClear);
-	text_layer_set_font(text_hour_layer, fonts_get_system_font(FONT_KEY_ROBOTO_BOLD_SUBSET_49));
+	text_layer_set_font(text_hour_layer, dosis_font);
+	text_layer_set_text_color(text_hour_layer, FOREGROUND);
 	text_layer_set_text_alignment(text_hour_layer, GTextAlignmentCenter);
 	layer_add_child(window_layer, text_layer_get_layer(text_hour_layer));
 	

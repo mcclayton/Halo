@@ -16,6 +16,11 @@
         "type": "png",
         "name": "IMAGE_MENU_ICON",
         "file": "images/menu_icon_halo.png"
+      },
+      {
+        "file": "fonts/Dosis-Medium.ttf",
+        "name": "FONT_DOSIS_56",
+        "type": "font"
       }
     ]
   }
