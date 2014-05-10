@@ -72,7 +72,10 @@ void handle_second_tick(struct tm *tick_time, TimeUnits units_changed) {
 
 void handle_deinit(void) {
 	tick_timer_service_unsubscribe();
-	fonts_unload_custom_font(dosis_font); 
+	text_layer_destroy(text_hour_layer);
+	layer_destroy(minute_circle_layer);
+	fonts_unload_custom_font(dosis_font);
+	window_destroy(window);
 }
 
 
