@@ -21,6 +21,11 @@
         "file": "fonts/Dosis-Medium.ttf",
         "name": "FONT_DOSIS_56",
         "type": "font"
+      },
+      {
+        "file": "fonts/Dosis-Medium.ttf",
+        "name": "FONT_DOSIS_18",
+        "type": "font"
       }
     ]
   }
