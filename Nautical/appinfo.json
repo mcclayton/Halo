@@ -1,0 +1,37 @@
+{
+  "uuid": "c6ef4929-77ac-44a6-97ca-14eb0294ab8c",
+  "shortName": "Nautical",
+  "longName": "Nautical",
+  "companyName": "Michael Clayton",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon_nautical.png"
+      },
+      {
+        "file": "fonts/Dosis-Medium.ttf",
+        "name": "FONT_DOSIS_56",
+        "type": "font"
+      },
+      {
+        "file": "fonts/Dosis-Medium.ttf",
+        "name": "FONT_DOSIS_20",
+        "type": "font"
+      },
+      {
+        "file": "fonts/Dosis-Medium.ttf",
+        "name": "FONT_DOSIS_16",
+        "type": "font"
+      }
+    ]
+  }
+}
