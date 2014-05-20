@@ -15,8 +15,12 @@ GFont dosis_font_16;
 
 void circle_layer_update_callback(Layer *layer, GContext* ctx) {
 
-	GRect bounds = layer_get_bounds(layer);
+	const GRect bounds = layer_get_bounds(layer);
 	const GPoint center = grect_center_point(&bounds);
+
+	// Define constants for hald the width and height of the current layer
+	const int32_t width_center = (bounds.size.w / 2);
+	const int32_t height_center = (bounds.size.h / 2);
 
 	graphics_context_set_fill_color(ctx, FOREGROUND);
 
@@ -25,10 +29,10 @@ void circle_layer_update_callback(Layer *layer, GContext* ctx) {
 	struct tm *t = localtime(&now);
 
 	// Draw the hour tick marks
-	const int16_t hourHandLength = (bounds.size.w / 2)-10;
+	const int16_t hourHandLength = width_center-10;
 	GPoint hourHand;
 	int32_t hour_angle;
-	for (int i=0; i<61; i+=5) {
+	for (int16_t i=0; i<61; i+=5) {
 		hour_angle = TRIG_MAX_ANGLE * (i) / 60;
 		hourHand.y = (int16_t)(-cos_lookup(hour_angle) * (int32_t)hourHandLength / TRIG_MAX_RATIO) + center.y;
 		hourHand.x = (int16_t)(sin_lookup(hour_angle) * (int32_t)hourHandLength / TRIG_MAX_RATIO) + center.x;
@@ -47,11 +51,10 @@ void circle_layer_update_callback(Layer *layer, GContext* ctx) {
 	hourHand.x = (int16_t)(sin_lookup(hour_angle) * (int32_t)hourHandLength / TRIG_MAX_RATIO) + center.x;
 	graphics_fill_circle(ctx, hourHand, 5);
 
-
 	// Draw the second arc
 	const int16_t secondHandLength = (bounds.size.w / 3 - 1);
 	GPoint secondHand;
-	for (int i=0; i<(t->tm_sec)+1; i++) {
+	for (int16_t i=0; i<(t->tm_sec)+1; i++) {
 		int32_t second_angle = TRIG_MAX_ANGLE * (i) / 60;
 		secondHand.y = (int16_t)(-cos_lookup(second_angle) * (int32_t)secondHandLength / TRIG_MAX_RATIO) + center.y;
 		secondHand.x = (int16_t)(sin_lookup(second_angle) * (int32_t)secondHandLength / TRIG_MAX_RATIO) + center.x;
@@ -59,10 +62,10 @@ void circle_layer_update_callback(Layer *layer, GContext* ctx) {
 	}
 
 	// Draw divider between hour and minutes text
-	const GPoint dividerStartOne = ((GPoint) {(bounds.size.w/2)-22, (bounds.size.h/2)+16});
-	const GPoint dividerEndOne = ((GPoint) {(bounds.size.w/2)+22, (bounds.size.h/2)+16});
-	const GPoint dividerStartTwo = ((GPoint) {(bounds.size.w/2)-22, (bounds.size.h/2)+17});
-	const GPoint dividerEndTwo = ((GPoint) {(bounds.size.w/2)+22, (bounds.size.h/2)+17});
+	const GPoint dividerStartOne = ((GPoint) {width_center-22, height_center+16});
+	const GPoint dividerEndOne = ((GPoint) {width_center+22, height_center+16});
+	const GPoint dividerStartTwo = ((GPoint) {width_center-22, height_center+17});
+	const GPoint dividerEndTwo = ((GPoint) {width_center+22, height_center+17});
 
 	graphics_context_set_stroke_color(ctx, FOREGROUND);
 	graphics_draw_line(ctx, dividerStartOne, dividerEndOne);
@@ -129,7 +132,6 @@ void handle_init(void) {
 	window_set_background_color(window, BACKGROUND);
 
 	Layer *window_layer = window_get_root_layer(window);
-
 
 	GRect window_bounds = layer_get_bounds(window_layer);
 
